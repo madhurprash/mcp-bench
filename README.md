@@ -35,15 +35,19 @@ MCPBench is a lightweight framework to benchmark AI agents’ tool-selection acc
 mcp-bench/
 ├── agents/
 │   ├── langgraph_local_mcp_client.py   # React-style client + benchmark driver
-│   └── math_results.csv                # (auto-generated) benchmark output
+│   ├── math_results.csv                # (auto-generated) per-task benchmark output
+│   └── benchmark_summary.txt           # (auto-generated) aggregated metrics summary
+├── eval_functions/
+│   └── benchmark_utils.py              # run_single() + write_summary() helpers
 ├── servers/
 │   └── math_mcp_server.py              # MCP math tool server
 ├── math_env/
-│   └── tasks.json                      # Benchmark task definitions
-├── few_shot_data/                      # Optional few-shot few-shot examples
-├── globals.py                          # Paths & constants (e.g. server FPATHs)
+│   └── tasks.json                      # Benchmark task definitions (id, question, expected, tool)
+├── few_shot_data/                      # Optional few-shot examples for in-prompt priming
+├── globals.py                          # Paths & constants (e.g. server FPATHs, FEW_SHOT_FPATH)
 ├── pyproject.toml                      # Project dependencies
-└── README.md                           # This file
+├── uv.lock                             # UV environment lockfile
+└── README.md                           # This file: setup, usage, CSV schema, extension notes
 ```
 
 ## 🚀 Running the MCP Server
@@ -106,6 +110,46 @@ uv run langgraph_local_mcp_client.py \
 - `--model-id` → specify any supported ChatLLM model
 
 - `--recursions`→ adjust the agent’s graph recursion limit
+
+## Example results
+
+View results on different tool calling metrics using `Amazon Nova Lite` below:
+
+```text
+MCPBench Summary
+----------------
+Total Tasks              : 22
+Avg Latency S            : 4.226772727272728
+Tool Selection Accuracy  : 0.7727272727272727
+Answer Accuracy          : 0.7727272727272727
+```
+
+### Raw results:
+
+| id  | question                                | used_tool  | tool_ground_truth | tool_selection_accuracy | args                                    | result                                     | expected | correct_ans | latency | input_tokens | output_tokens | total_tokens | error                                                                                                                                         |
+|-----|-----------------------------------------|------------|-------------------|-------------------------|-----------------------------------------|--------------------------------------------|----------|-------------|---------|--------------|---------------|--------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | What is 12 / 5?                         | divide     | divide            | True                    | `{'a': 12, 'b': 5}`                     | 2.4                                        | 2.4      | True        | 4.009   |              |               |              |                                                                                                                                                |
+| 2   | Compute 7 * 8                           | multiply   | multiply          | True                    | `{'a': 7, 'b': 8}`                      | 56                                         | 56       | True        | 2.492   |              |               |              |                                                                                                                                                |
+| 3   | Calculate 15 + 27                       | add        | add               | True                    | `{'a': 15, 'b': 27}`                    | 42                                         | 42       | True        | 2.401   |              |               |              |                                                                                                                                                |
+| 4   | What is 100 - 35?                       | subtract   | subtract          | True                    | `{'a': 100, 'b': 35}`                   | 65                                         | 65       | True        | 2.323   |              |               |              |                                                                                                                                                |
+| …   | …                                       | …          | …                 | …                       | …                                       | …                                          | …        | …           | …       | …            | …             | …            | …                                                                                                                                              |
+| 22  | Calculate the volume of a cube with side length 4 | volume     | volume            | True                    | `{'shape': 'cube', 'kwargs': 'side=4'}` | Error: ToolException('Error executing tool volume: Cube requires side length')<br>Please fix your mistakes. | 64       | False       | 15.960  |              |               |              |                                                                                                                                                |
+
+
+### Detailed logging
+
+You will be able to see detailed logging of the traces when the benchmark mode is on:
+
+```bash
+Processing request of type ListToolsRequest
+▶ Task 1: What is 12 / 5?
+Processing request of type CallToolRequest
+--> Latency: 3.168s
+--> Tool call: divide({'a': 12, 'b': 5})
+--> Raw tool result: 2.4
+--> Tokens: input=None, output=None, total=None
+--> Expected: 2.4 → ✅ PASS
+```
 
 Once done, open `agents/math_results.csv` to review:
 
