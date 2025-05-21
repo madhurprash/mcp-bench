@@ -1,0 +1,180 @@
+[
+  {
+    "task_id": 0,
+    "reward": 1.0,
+    "info": {
+      "task": {
+        "user_id": "math_user_0001",
+        "actions": [
+          {
+            "name": "add",
+            "kwargs": {
+              "a": 7,
+              "b": 8
+            }
+          }
+        ],
+        "instruction": "Compute 7 + 8.",
+        "outputs": []
+      },
+      "source": "user",
+      "user_cost": 0.1,
+      "reward_info": {
+        "reward": 1.0,
+        "info": {
+          "r_actions": 1.0,
+          "gt_data_hash": "abc123def456"
+        },
+        "actions": [
+          {
+            "name": "add",
+            "kwargs": {
+              "a": 7,
+              "b": 8
+            }
+          }
+        ]
+      }
+    },
+    "traj": [
+      {
+        "role": "system",
+        "content": "# Math agent policy\n\nYou are a Math Agent. You can perform simple arithmetic by invoking exactly one tool call per user request. Valid tools are `add`, `subtract`, `multiply`, and `divide`. Always return the tool call, then wait for the tool response before answering."
+      },
+      {
+        "role": "user",
+        "content": "What is 7 + 8?"
+      },
+      {
+        "role": "assistant",
+        "content": "<antml:function_calls>\n<antml:invoke name=\"add\">\n<antml:parameter name=\"a\">7</antml:parameter>\n<antml:parameter name=\"b\">8</antml:parameter>\n</antml:invoke>\n</antml:function_calls>"
+      },
+      {
+        "role": "tool",
+        "name": "add",
+        "content": "15"
+      },
+      {
+        "role": "assistant",
+        "content": "The result of 7 + 8 is 15."
+      },
+      {
+        "role": "user",
+        "content": "###STOP###"
+      }
+    ],
+    "trial": 0
+  },
+  {
+    "task_id": 1,
+    "reward": 1.0,
+    "info": {
+      "task": {
+        "user_id": "math_user_0001",
+        "actions": [
+          {
+            "name": "multiply",
+            "kwargs": {
+              "a": 6,
+              "b": 9
+            }
+          },
+          {
+            "name": "divide",
+            "kwargs": {
+              "a": 20,
+              "b": 4
+            }
+          },
+          {
+            "name": "add",
+            "kwargs": {
+              "a": 54,
+              "b": 5
+            }
+          }
+        ],
+        "instruction": "Compute (6 * 9) + (20 / 4).",
+        "outputs": []
+      },
+      "source": "user",
+      "user_cost": 0.2,
+      "reward_info": {
+        "reward": 1.0,
+        "info": {
+          "r_actions": 3.0,
+          "gt_data_hash": "fed456abc123"
+        },
+        "actions": [
+          {
+            "name": "multiply",
+            "kwargs": {
+              "a": 6,
+              "b": 9
+            }
+          },
+          {
+            "name": "divide",
+            "kwargs": {
+              "a": 20,
+              "b": 4
+            }
+          },
+          {
+            "name": "add",
+            "kwargs": {
+              "a": 54,
+              "b": 5
+            }
+          }
+        ]
+      }
+    },
+    "traj": [
+      {
+        "role": "system",
+        "content": "# Math agent policy\n\nYou are a Math Agent. For multi-step calculations, break the problem into separate tool calls and then combine the results in a final addition."
+      },
+      {
+        "role": "user",
+        "content": "Compute (6 * 9) + (20 / 4)."
+      },
+      {
+        "role": "assistant",
+        "content": "<antml:function_calls>\n<antml:invoke name=\"multiply\">\n<antml:parameter name=\"a\">6</antml:parameter>\n<antml:parameter name=\"b\">9</antml:parameter>\n</antml:invoke>\n</antml:function_calls>"
+      },
+      {
+        "role": "tool",
+        "name": "multiply",
+        "content": "54"
+      },
+      {
+        "role": "assistant",
+        "content": "The product of 6 * 9 is 54.\n\n<antml:function_calls>\n<antml:invoke name=\"divide\">\n<antml:parameter name=\"a\">20</antml:parameter>\n<antml:parameter name=\"b\">4</antml:parameter>\n</antml:invoke>\n</antml:function_calls>"
+      },
+      {
+        "role": "tool",
+        "name": "divide",
+        "content": "5"
+      },
+      {
+        "role": "assistant",
+        "content": "The quotient of 20 ÷ 4 is 5.\n\n<antml:function_calls>\n<antml:invoke name=\"add\">\n<antml:parameter name=\"a\">54</antml:parameter>\n<antml:parameter name=\"b\">5</antml:parameter>\n</antml:invoke>\n</antml:function_calls>"
+      },
+      {
+        "role": "tool",
+        "name": "add",
+        "content": "59"
+      },
+      {
+        "role": "assistant",
+        "content": "Therefore, (6 * 9) + (20 / 4) = 59."
+      },
+      {
+        "role": "user",
+        "content": "###STOP###"
+      }
+    ],
+    "trial": 0
+  }
+]

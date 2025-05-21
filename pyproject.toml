@@ -1,0 +1,13 @@
+[project]
+name = "mcp-bench"
+version = "0.1.0"
+description = "This is the MCP bench repository that provides benchmarking for evaluation AI agents on MCP server/tool selection and execution"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mcp",
+    "langchain-aws",
+    "langchain-mcp-adapters",
+    "langgraph",
+    "zmq",
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "messages_display": "user: What is 7 + 8?\nassistant: I'll use the math-add tool to compute that.\n\ntool: {\"tool\": \"add\", \"args\": {\"a\": 7, \"b\": 8}, \"result\": 15}\n\nassistant: 15"
+  },
+  {
+    "messages_display": "user: Multiply 6 by 9, please.\nassistant: Sure—using the math-multiply tool now.\n\ntool: {\"tool\": \"multiply\", \"args\": {\"a\": 6, \"b\": 9}, \"result\": 54}\n\nassistant: 54"
+  },
+  {
+    "messages_display": "user: What is 20 divided by 4?\nassistant: Using the math-divide tool to find out.\n\ntool: {\"tool\": \"divide\", \"args\": {\"a\": 20, \"b\": 4}, \"result\": 5}\n\nassistant: 5"
+  },
+  {
+    "messages_display": "user: What's 15 minus 7?\nassistant: Let me subtract that with the math-subtract tool.\n\ntool: {\"tool\": \"subtract\", \"args\": {\"a\": 15, \"b\": 7}, \"result\": 8}\n\nassistant: 8"
+  },
+  {
+    "messages_display": "user: Could you compute (12 * 3) + (8 / 2)?\nassistant: I'll break it down:\n\nFirst, multiplication:\n\ntool: {\"tool\": \"multiply\", \"args\": {\"a\": 12, \"b\": 3}, \"result\": 36}\n\nassistant: That gives 36.\n\nNext, division:\n\ntool: {\"tool\": \"divide\", \"args\": {\"a\": 8, \"b\": 2}, \"result\": 4}\n\nassistant: That gives 4.\n\nFinally, addition:\n\ntool: {\"tool\": \"add\", \"args\": {\"a\": 36, \"b\": 4}, \"result\": 40}\n\nassistant: 40"
+  }
+]

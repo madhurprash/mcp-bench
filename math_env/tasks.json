@@ -1,0 +1,134 @@
+[
+    {
+      "id": 1,
+      "question": "What is 12 / 5?",
+      "expected": 2.4,
+      "tool": "divide"
+    },
+    {
+      "id": 2,
+      "question": "Compute 7 * 8",
+      "expected": 56,
+      "tool": "multiply"
+    },
+    {
+      "id": 3,
+      "question": "Calculate 15 + 27",
+      "expected": 42,
+      "tool": "add"
+    },
+    {
+      "id": 4,
+      "question": "What is 100 - 35?",
+      "expected": 65,
+      "tool": "subtract"
+    },
+    {
+      "id": 5,
+      "question": "Find the square root of 144",
+      "expected": 12,
+      "tool": "sqrt"
+    },
+    {
+      "id": 6,
+      "question": "Calculate 3^4",
+      "expected": 81,
+      "tool": "power"
+    },
+    {
+      "id": 7,
+      "question": "What is the logarithm of 1000 with base 10?",
+      "expected": 3,
+      "tool": "log"
+    },
+    {
+      "id": 8,
+      "question": "Find sin(90°) in radians",
+      "expected": 1,
+      "tool": "trigonometry"
+    },
+    {
+      "id": 9, 
+      "question": "What is the area of a circle with radius 5?",
+      "expected": 78.54,
+      "tool": "geometry"
+    },
+    {
+      "id": 10,
+      "question": "Calculate the percentage of 25 out of 200",
+      "expected": 12.5,
+      "tool": "percentage"
+    },
+    {
+      "id": 11,
+      "question": "Convert 5 kilometers to miles",
+      "expected": 3.10686,
+      "tool": "conversion"
+    },
+    {
+      "id": 12,
+      "question": "Find the greatest common divisor of 48 and 18",
+      "expected": 6,
+      "tool": "gcd"
+    },
+    {
+      "id": 13,
+      "question": "Calculate the least common multiple of 12 and 18",
+      "expected": 36,
+      "tool": "lcm"
+    },
+    {
+      "id": 14,
+      "question": "What is 3.14159 rounded to 2 decimal places?",
+      "expected": 3.14,
+      "tool": "round"
+    },
+    {
+      "id": 15,
+      "question": "Find the factorial of 6",
+      "expected": 720,
+      "tool": "factorial"
+    },
+    {
+      "id": 16,
+      "question": "Calculate the sum of numbers from 1 to 100",
+      "expected": 5050,
+      "tool": "summation"
+    },
+    {
+      "id": 17,
+      "question": "What is the absolute value of -42?",
+      "expected": 42,
+      "tool": "abs"
+    },
+    {
+      "id": 18,
+      "question": "Find the maximum value in [12, 45, 23, 67, 9]",
+      "expected": 67,
+      "tool": "max"
+    },
+    {
+      "id": 19,
+      "question": "Calculate the average of [10, 15, 20, 25, 30]",
+      "expected": 20,
+      "tool": "average"
+    },
+    {
+      "id": 20,
+      "question": "Find the median of [3, 1, 7, 4, 9]",
+      "expected": 4,
+      "tool": "median"
+    },
+    {
+      "id": 21,
+      "question": "Convert 42°C to Fahrenheit",
+      "expected": 107.6,
+      "tool": "temperature_conversion"
+    },
+    {
+      "id": 22,
+      "question": "Calculate the volume of a cube with side length 4",
+      "expected": 64,
+      "tool": "volume"
+    }
+]
